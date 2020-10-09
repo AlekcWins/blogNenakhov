@@ -1,7 +1,20 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
+
+@using blogNenakhov.Domain.DB
+@using blogNenakhov.Controllers
+
+@inject SignInManager<User> SignInManager
+
+
 <h1>Здесь будет находитсья блог</h1>
 
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div >
+        <a class="dropdown-item" asp-controller="Blog" asp-action="AddPost">Добавить пост</a>
+    </div>
+}

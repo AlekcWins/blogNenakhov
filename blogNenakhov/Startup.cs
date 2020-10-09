@@ -86,7 +86,7 @@ namespace blogNenakhov
                         guarantor.Ensure(scope.ServiceProvider);
                     Console.WriteLine("Startup guarantors executed successfully");
                 }
-                catch (StartupPreConditionException e)
+                catch (StartupPreConditionException )
                 {
                     Console.WriteLine("Startup guarantors failed");
                     throw;
