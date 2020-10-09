@@ -60,7 +60,16 @@ namespace blogNenakhov.Controllers
         // </summary>
         public ActionResult Index()
         {
-            return View();
+            var posts = _blogDbContext.BlogPosts
+                 .Select(x => new BlogPostItemViewModel
+                 {
+                     Author = x.Owner.FullName,
+                     Created = x.Created,
+                     Data = x.Data,
+                     Title = x.Title
+                 }).OrderByDescending(x => x.Created);
+
+            return View(posts);
         }
 
 

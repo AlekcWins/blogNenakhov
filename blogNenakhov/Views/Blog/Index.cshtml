@@ -4,17 +4,51 @@
 
 
 @using blogNenakhov.Domain.DB
-@using blogNenakhov.Controllers
+@using blogNenakhov.ViewModels.Blog
+
 
 @inject SignInManager<User> SignInManager
+<style>
 
 
-<h1>Здесь будет находитсья блог</h1>
+
+
+/* Add a card effect for articles */
+    .card {
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+
+
+
+
+
+</style>
 
 
 @if (SignInManager.IsSignedIn(User))
 {
     <div >
-        <a class="dropdown-item" asp-controller="Blog" asp-action="AddPost">Добавить пост</a>
+        <a  asp-controller="Blog" asp-action="AddPost">Добавить пост</a>
     </div>
+
+
+
+
+    @foreach(BlogPostItemViewModel post in Model)
+    {
+        <div class="card">
+            <h2>@post.Title</h2>
+            <h3>@post.Author</h3>
+            <h5>@post.Created</h5>
+            <p>@post.Data</p>
+        </div>
+    }
+
+
+
+   
 }
